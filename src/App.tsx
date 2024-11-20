@@ -34,7 +34,7 @@ function App() {
           .map(async (feed) => {
             try {
               const proxiedUrl = createProxiedUrl(feed.url);
-              const items = await parseFeed(proxiedUrl, feed.category);
+              const items = await parseFeed(proxiedUrl, feed.category, feed.id);
               return items;
             } catch (error) {
               console.error(`Error fetching feed ${feed.title}:`, error);

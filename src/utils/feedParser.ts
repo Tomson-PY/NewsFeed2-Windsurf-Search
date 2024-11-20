@@ -44,7 +44,7 @@ const cleanContent = (content: any): string => {
     .trim();
 };
 
-export async function parseFeed(url: string, category: string): Promise<FeedItem[]> {
+export async function parseFeed(url: string, category: string, feedId: string): Promise<FeedItem[]> {
   try {
     const response = await fetch(url);
     if (!response.ok) {
@@ -100,7 +100,8 @@ export async function parseFeed(url: string, category: string): Promise<FeedItem
         link: link || '',
         content: cleanedContent.substring(0, 300) + (cleanedContent.length > 300 ? '...' : ''),
         pubDate: item.pubDate || item.published || item.updated || new Date().toISOString(),
-        category
+        category,
+        feedId
       };
     });
   } catch (error) {

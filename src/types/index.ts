@@ -12,6 +12,7 @@ export interface FeedItem {
   content: string;
   pubDate: string;
   category: string;
+  feedId: string;  // Changed from feedUrl to feedId to match with Feed.id
 }
 
 export interface TagPreset {

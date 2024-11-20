@@ -3,7 +3,7 @@ import { useStore } from '../store/useStore';
 import { Bookmark, BookmarkCheck, Circle, CircleDot, Tag, ChevronLeft, ChevronRight, MoreHorizontal, Search } from 'lucide-react';
 
 export const Dashboard: React.FC = () => {
-  const { feedItems, preferences, toggleBookmark, toggleRead } = useStore();
+  const { feedItems, preferences, feeds, toggleBookmark, toggleRead } = useStore();
   const [currentPage, setCurrentPage] = useState(1);
   const [searchQuery, setSearchQuery] = useState('');
   const itemsPerPage = 21;
@@ -173,6 +173,10 @@ export const Dashboard: React.FC = () => {
                       <div className="flex items-center space-x-2">
                         <span className="text-muted-foreground">
                           {new Date(item.pubDate).toLocaleDateString()}
+                        </span>
+                        <span className="text-muted-foreground">-</span>
+                        <span className="text-gray-500">
+                          {feeds.find(feed => feed.id === item.feedId)?.title || 'Unknown Source'}
                         </span>
                         <span className={`tag-${item.category.replace(/\s+/g, '')}`}>
                           {item.category}
